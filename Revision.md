@@ -37,3 +37,33 @@ lib/ - dependecies like npm package.
 ---
 
 # MODULE 3
+
+1. Testing -> first import dependencies and contract files from src folder,
+   setup functions(In Foundry, setUp() runs automatically before each test), and then test functions
+   to run test folder files - forge test(run all test files in test folder)
+   all test functions must be public or external only.
+   to test specific file - forge test --match path
+   verbosity - to get more detail of test file how it runse where it fails or pass(max 5 v)
+
+assertEq - is a Foundry assertion(value 1,value 2) checks if value 1 == value 2 if not equals tehn function fails.
+
+2. vm.expectRevert - If next function NOT fails, I will say you are wrong.(for require)
+
+vm.expectRevert(...) - “Hey Foundry, the next function call must FAIL.” (function parameter- bytes("Insuffecient amount"))
+bytes("Insuffecient amount") - “And when it fails, it must say: ‘Insuffecient amount’”
+next function call - digibank.deposit{value: 0}(0); the contracts checks Is amount > 0 ?(require) - ans:NO
+And it stops (this is called revert)
+Foundry now checks 👀
+
+Foundry asks:
+Did it FAIL? Yes
+Did it say "Insuffecient amount"? - Yes
+Result- TEST PASSES
+
+3. Test Coverage - How much of your code did your tests actually touch?
+   Your contract has 10 lines of code
+
+Tests use 7 lines
+Tests do NOT use 3 lines
+Coverage = 7 / 10
+command to show coverage - forge coverage
